@@ -1,0 +1,17 @@
+.myclass{
+    background: blue;
+}
+#myid{
+    background: aqua;
+}
+.myclass2{
+    background: red;
+}
+.myfont{
+    font-size: 24px;
+    font-weight: bold;
+}
+div{
+    width: 100px;
+    height: 100px;
+}
