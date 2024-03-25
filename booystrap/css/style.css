@@ -1,0 +1,35 @@
+:root{
+    --bg-light-gray: #494949;
+    --bg-red: #df3c0a;
+    --bg-dark-gray: #333333;
+}
+.bg-dark{
+    --bs-bg-opacity: 1;
+    /*background-color: rgba(var(--bg-light-gray), var(--bs-bg-opacity)) !important;*/
+    background-color: var(--bg-light-gray)!important; 
+}
+.nav-link{
+    text-transform: uppercase;
+    font-weight: bold;
+}
+/*custom home button*/
+
+@media only screen and (min-width:576px) {
+    .nav-item-home{
+        background-color: var(--bg-red);
+        padding: 7px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+    }
+    .container-fluid{
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+    .navbar{
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+}
