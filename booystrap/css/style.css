@@ -32,4 +32,26 @@
         padding-top: 0 !important;
         padding-bottom: 0 !important;
     }
+    /*custom card*/
+    .card{
+        border: 0;
+        border-radius: 0;
+    }
+    .card-img{
+        border:0;
+        border-radius: 0;
+
+    }
+    .row > *{
+        padding: 0;
+    }
+    .list-group{
+        border-radius: 0;
+        background-color: var(--bg-dark-gray);
+    }
+    .list-group-item{
+        background-color: var(--bg-light-gray);
+        color: white;
+        flex-grow: 1;
+    }
 }
