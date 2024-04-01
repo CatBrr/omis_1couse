@@ -1,0 +1,39 @@
+.box{
+    width: 100px;
+    height: 100px;
+    border: 1px solid red;
+    display: flex;
+    animation-name:  box-moving-test;
+    animation-duration: 5s;
+    position: relative;
+    animation-direction: alternate-reverse;
+    animation-timing-function: cubic-bezier(0.56, 1.11, 0.66, 0.23);
+    animation-iteration-count: infinite;
+}
+@keyframes box-moving-test {
+    0%{
+        left:0px;
+        background-color: blueviolet;
+    }
+    100%{
+        left:500px;
+        width: 50px;
+        height: 50px;
+        background-color: aquamarine;
+    }
+}
+
+@keyframes box-rounding-test {
+    from{
+        width: 100px;
+        height: 100px;
+        border-radius: 100px;
+    }
+    to{
+        align-items: center;
+        justify-content: center;
+        border-radius: 0px;
+        height: 60px;
+        width: 60px;
+    }
+}
