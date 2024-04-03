@@ -56,7 +56,7 @@ let addnumbers=() => {
 };
 addnumbers()
 getName('Daria')
-//class
+//class_
 class numbers{
     constructor(newValue=20){
         this.num = newValue;
