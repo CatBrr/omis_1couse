@@ -1,4 +1,7 @@
 #question_image{
     height: 250px;
     width: 250px;
+    display:flex;
+    justify-content: center;
+    text-align: center;
 }
