@@ -1,4 +1,8 @@
+google.charts.load('current', {'packages':['bar']})
 let questions_list=document.getElementById("questions_list")
+let btn_no= document.getElementById("btn_no")
+let btn_yes= document.getElementById("btn_yes")
+let btn_shown_chart= document.getElementById("btn_shown_chart")
 let questions = [
     {
         id:1,
@@ -31,9 +35,94 @@ let questions = [
         img: "https://picsum.photos/id/63/250" //false
     }
 ]
-console.log(get_q_by_id(3));
-/* question_id answer_clicked */
-let results=[]
+/* question_id answer_clicked 
+['Copper', 8.94, '#b87333'], */
+let results=[
+    /*{
+        question_id:1,
+        yes:1,
+        no:0
+    }*/
+]
+btn_shown_chart.addEventListener("click", event=>{
+    if(results.length==questions.length){
+        let charwidthdata= drawChart(parse_results_google_charts())
+        google.charts.setOnLoadCallback(charwidthdata);
+    }
+    else{
+        let modal=document.getElementById("exampleModal")
+        modal.querySelector("#exampleModalLabel").innerText ="Info"
+        modal.querySelector("#mdl_info_body").innerText ="Not all questions have been answered!"
+        const mdl_info = new bootstrap.Modal('#exampleModal',{})
+        mdl_info.show()
+    }
+})
+function drawChart(customData) {
+    console.log(customData);
+  var data = google.visualization.arrayToDataTable(customData);
+
+  var options = {
+    chart: {
+      title: 'Results'
+    }
+  };
+
+  var chart = new google.charts.Bar(document.getElementById('chart_div'));
+
+  chart.draw(data, google.charts.Bar.convertOptions(options));
+}
+btn_no.addEventListener("click", event=>{
+    console.log(activeID);
+    save_answer(activeID, "NO");
+})
+btn_yes.addEventListener("click", event=>{
+    console.log(activeID);
+    save_answer(activeID, "YES");
+})
+function parse_results_google_charts(){
+    let data =  [
+        ['Question id', 'Answers Yes', 'Answers No']
+    ];
+    if (results.length > 0) {
+        results.forEach(result=>{
+            data.push([result.question_id,result.yes,result.no])
+        })
+    }
+    return data
+    
+}
+function save_answer(question_id, answer){
+    if ( results.length==0) {
+        results.push({
+            question_id:question_id.toString(),
+            yes: answer.toUpperCase() == "YES" ? 1 : 0,
+            no: answer.toUpperCase() == "NO" ? 1 : 0
+        })
+    }
+    else{
+        //SAVE EXISTING RESULT
+        let is_result_found=false
+        results.forEach((result, index)=>{
+            if(result.question_id == question_id){
+                if(answer.toUpperCase() == "NO"){
+                    result.no +=1
+                }else if(answer.toUpperCase() == "YES"){
+                    result.yes +=1
+                }
+                is_result_found=true
+            }
+        })
+        //save additional result for question
+        if (is_result_found == false) {
+            results.push({
+                question_id:question_id.toString(),
+                yes: answer.toUpperCase() == "YES" ? 1 : 0,
+                no: answer.toUpperCase() == "NO" ? 1 : 0
+            })
+        }
+    }
+}
+/*lists questions */
 function create_li_element(text,is_active=false){
     let new_li=document.createElement("li")
     new_li.classList.add("list-group-item")
