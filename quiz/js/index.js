@@ -58,6 +58,7 @@ function draw_question_list(){
 })
 
 }
+/*get by id*/
 function get_q_by_id(id){
     return questions.find(item => {
         return item.id==id
