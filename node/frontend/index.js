@@ -94,9 +94,9 @@ edit_buttoms.forEach(btnEdit=>{
             fetch('./form.html').then(response=>{
                 return response.text()
             }).then(form=>{
-                const parser = new DOMParser()
+                /*const parser = new DOMParser()
                 const  doc= parser.parseFromString(form,'text/html')
-                doc.querySelector('#Books_name').value=books[edit_button_id].book_name
+                doc.querySelector('#Books_name').value=books[edit_button_id].book_name*/
                 modal_body.innerHTML=doc.body.outerHTML
             })
         })
