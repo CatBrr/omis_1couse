@@ -4,10 +4,6 @@ import MyButton from '../MyButton/MyButton';
 
 const MyForm = () => {
     const [post,setPost]=useState({title: '', desc: ''})
-    function createPost(){
-        posts.push({title: 'Post 1', desc: 'description 1'});
-        setPosts({posts});
-    }
     return (
 
         <form>
@@ -22,7 +18,7 @@ const MyForm = () => {
                     type='text'
                     placeholder='Insert description'
                     value={post.desc}
-                    onChange={event=>setPost({...post,desc:event.target.value})}
+                    onChange={event=>setPost({...post,title:event.target.value})}
                 />
             </div>
             <MyButton title="Save item"/>
