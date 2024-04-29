@@ -1,13 +1,22 @@
 import React from 'react';
+import Button from 'react-bootstrap/esm/Button';
 
 const MyButton = ({onClickFn, ...props}) => {
+    /*          <button 
+    className="btn btn-primary m-2" 
+    
+></button>*/
    // console.log(props,onClick);
+   const btnColor=props.color
     return (
         <div>
-            <button 
-                className="btn btn-primary m-2" 
+            <Button
+                className='m-1'
+                variant={btnColor}
                 onClick={onClickFn}
-            >{props.title}</button>
+            >
+                {props.title}
+            </Button>
         </div>
     );
 };

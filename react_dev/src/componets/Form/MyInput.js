@@ -1,12 +1,12 @@
 import React from 'react';
 
-const MyInput = (props) => {
+const MyInput = React.forwardRef((props, ref) => {
     return (
         //
         <div>
-            <input {...props} className="m-1"/>
+            <input ref={ref} {...props} className="m-1"/>
         </div>
     );
-};
+})
 
 export default MyInput;
