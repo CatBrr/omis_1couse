@@ -32,15 +32,16 @@ function App() {
   }
   const editPost=(post)=>{
     console.log('post editing...',post);
-    setPosts(posts.forEach(p=>{
+    posts.forEach(p=>{
       if (p.id === post.id) {
         p.title = post.title
-        p.desc=post.desc
+        p.desc = post.desc
+        
         return p
-        //
       }
-    }))
-    
+    })
+    setPosts([...posts])
+    console.log(posts);
   }
   const searchPosts=(word)=>{
     console.log('searching...',word);
@@ -54,7 +55,7 @@ function App() {
       <MyFilter searchPosts={searchPosts}/>
       <hr></hr>
       <PostList posts={posts} deleteFn={deletePost} editFn={editPost}/>
-      <MyModal ModalTitle="Add new post"><MyForm savePosts={savePosts}/></MyModal>
+      <MyModal ModalTitle="Add new post"><MyForm savePosts={savePosts} isEdit={false}/></MyModal>
     </div>
   );
 }
