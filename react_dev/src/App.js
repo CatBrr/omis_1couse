@@ -9,17 +9,23 @@ import MyForm from './componets/Form/MyForm';
 //import Button from 'react-bootstrap/Button';
 import MyModal from './componets/MyModal';
 import MyFilter from './componets/filter/MyFilter';
+import postService from './componets/api/postService';
 
 
 function App() {
   //let clicks=0
   const [posts, setPosts]=useState(
     [
-      {id:1,title: 'Post 1 c3', desc: 'description 1'},
-      {id:2,title: 'Post 2 d1', desc: 'description 2'},
-      {id:3,title: 'Post 3 e2', desc: 'description 3'}
+      {id:1,title: 'Post 1 c3', body: 'description 1'},
+      {id:2,title: 'Post 2 d1', body: 'description 2'},
+      {id:3,title: 'Post 3 e2', body: 'description 3'}
     ]
   );
+  async function getAllData(){
+    const MyData= await postService.getAll()
+    setPosts(MyData)
+    console.log(MyData);
+  }
   const [selectedSort, setselectedSort]=useState('title')
   function savePosts(newPost){
     console.log('post...changing');
@@ -36,7 +42,7 @@ function App() {
     posts.forEach(p=>{
       if (p.id === post.id) {
         p.title = post.title
-        p.desc = post.desc
+        p.body = post.body
         
         return p
       }
@@ -46,6 +52,7 @@ function App() {
   }
   const searchPosts=(word)=>{
     if(word===undefined){
+      getAllData()
       return posts
     }
     else{
@@ -61,6 +68,7 @@ const sortPosts = () =>{
     <div>
       {
         useEffect(()=>{
+          getAllData()
           console.log('sorting..',selectedSort);
         },[selectedSort])
       }

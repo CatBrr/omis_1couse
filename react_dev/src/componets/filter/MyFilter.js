@@ -17,7 +17,7 @@ const MyFilter = ({searchPosts,SetselectedSort, sortPosts}) => {
         <div className='d-flex'>
             <MySelectButton sortPosts={sortPosts} SetselectedSort={SetselectedSort} defaultTitle="Choose filter" options={[
                 {title: "title",href:"#/tets"},
-                {title: "desc",href:"#/tets"}
+                {title: "body",href:"#/tets"}
             ]}></MySelectButton>
             <MyInput 
                 ref={searchQuery}

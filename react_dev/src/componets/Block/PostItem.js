@@ -8,7 +8,7 @@ const PostItem = ({post, index,deletePostFn, editPostFn}) => {
     return (
         <div className='d-flex justify-content-between border border-secondary rounded m-1'>
             <div className={post_style.postTitle}>{index +1}  {post.title}</div>
-            <div className={post_style.postDescription }>{post.desc}</div>
+            <div className={post_style.postDescription }>{post.body}</div>
             <div className='d-flex'>
                 <MyModal ModalTitle="Edit post"><MyForm editPost={editPostFn} post_old={post} isEdit={true}/></MyModal>
                 <MyButton title='delete' color="danger" onClickFn={()=> deletePostFn(post)}/>

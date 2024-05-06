@@ -4,7 +4,7 @@ import MyButton from '../MyButton/MyButton';
 
 const MyForm = ({savePosts, editPost, post_old,isEdit}) => {
     console.log(post_old);
-    const [post,setPost]=useState({title: '', desc: ''})
+    const [post,setPost]=useState({title: '', body: ''})
     const titleRef= useRef()
     //const [isEdit,SetIsEdit] = useState(false)
     const descRef=useRef()
@@ -16,7 +16,7 @@ const MyForm = ({savePosts, editPost, post_old,isEdit}) => {
         const newPost={
             id: Date.now(),
             title: titleRef.current.value,
-            desc: descRef.current.value
+            body: descRef.current.value
         }
         savePosts(newPost)
         //console.log(event)
@@ -39,8 +39,8 @@ const MyForm = ({savePosts, editPost, post_old,isEdit}) => {
                     type='text'
                     ref={descRef}
                     placeholder='Insert description'
-                    value={isEdit ? post_old.desc : post.desc}
-                    onChange={event=>setPost(isEdit ? post_old.desc=event.target.value :{...post,desc:event.target.value})}
+                    value={isEdit ? post_old.body : post.body}
+                    onChange={event=>setPost(isEdit ? post_old.body=event.target.value :{...post,body:event.target.value})}
                 />
             </div>
             <MyButton title={isEdit ? "Update post" :"Save post"} onClickFn={isEdit ? updatePost : createPost}/>
