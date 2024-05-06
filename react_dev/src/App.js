@@ -2,7 +2,7 @@
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.css'
 //import Counter from './componets/counter/Counter';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 //import PostItem from './componets/Block/PostItem';
 import PostList from './componets/Block/PostList';
 import MyForm from './componets/Form/MyForm';
@@ -20,6 +20,7 @@ function App() {
       {id:3,title: 'Post 3 e2', desc: 'description 3'}
     ]
   );
+  const [selectedSort, setselectedSort]=useState('title')
   function savePosts(newPost){
     console.log('post...changing');
     posts.push(newPost)
@@ -44,17 +45,28 @@ function App() {
     console.log(posts);
   }
   const searchPosts=(word)=>{
-    console.log('searching...',word);
-    const result=posts.filter(p=>{ 
-      return p.title.toLowerCase().includes(word.toLowerCase().trim())})
-    console.log(result);
-    setPosts(posts)
+    if(word===undefined){
+      return posts
+    }
+    else{
+      console.log('searching...',word);
+      return [...posts].filter(p=> p.title.toLowerCase().includes(word.toLowerCase().trim()))
+    }
+    //setPosts(posts)
   }
+const sortPosts = () =>{
+  setPosts([...posts].sort((a,b)=>a[selectedSort].localeCompare(b[selectedSort])))
+}
   return (
     <div>
-      <MyFilter searchPosts={searchPosts}/>
+      {
+        useEffect(()=>{
+          console.log('sorting..',selectedSort);
+        },[selectedSort])
+      }
+      <MyFilter searchPosts={searchPosts} sortPosts={sortPosts} SetselectedSort={setselectedSort}/>
       <hr></hr>
-      <PostList posts={posts} deleteFn={deletePost} editFn={editPost}/>
+      <PostList posts={searchPosts()} deleteFn={deletePost} editFn={editPost}/>
       <MyModal ModalTitle="Add new post"><MyForm savePosts={savePosts} isEdit={false}/></MyModal>
     </div>
   );
