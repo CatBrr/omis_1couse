@@ -1,12 +1,12 @@
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
-function MySelectButton({options, defaultTitle, SetselectedSort, sortPosts}) {
+function MySelectButton({options, defaultTitle, setFilter}) {
   const buttonClick=(event)=>{
     event.preventDefault();
     //console.log(event.target.dataset.sort)
-    SetselectedSort(event.target.dataset.sort)
-    sortPosts()
+    setFilter({...filter, selectedSort: event.target.dataset.sort})
+
   }
   return (
     <DropdownButton id="dropdown-basic-button" title={defaultTitle}>

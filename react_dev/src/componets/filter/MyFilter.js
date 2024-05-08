@@ -2,29 +2,22 @@ import React, { useRef, useState } from 'react';
 import MySelectButton from '../MyButton/MySelectButton';
 import MyInput from '../Form/MyInput';
 
-const MyFilter = ({searchPosts,SetselectedSort, sortPosts}) => {
+const MyFilter = ({filter, SetFilter}) => {
 
-    let [searchWord, SetsearchWord]=useState()
     const searchQuery= useRef()
 
-    const localsearchPosts=()=>{
-        console.log(searchQuery.current.value);
-        SetsearchWord(searchQuery.current.value);
-        console.log(searchWord);
-        searchPosts(searchQuery.current.value)
-    }
     return (
         <div className='d-flex'>
-            <MySelectButton sortPosts={sortPosts} SetselectedSort={SetselectedSort} defaultTitle="Choose filter" options={[
+            <MySelectButton  setFilter={SetFilter} defaultTitle="Choose filter" options={[
                 {title: "title",href:"#/tets"},
                 {title: "body",href:"#/tets"}
             ]}></MySelectButton>
             <MyInput 
-                ref={searchQuery}
+                ref={filter.searchQuery}
                 type="text"
-                value={searchWord}
+                value={filter.searchWord}
                 placeholder="Search"
-                onChange={localsearchPosts}
+                onChange={event => SetFilter({...filter, searchWord: event.target.value})}
             ></MyInput>
         </div>
     );
